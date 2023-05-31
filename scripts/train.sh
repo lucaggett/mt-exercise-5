@@ -3,6 +3,14 @@
 scripts=$(dirname "$0")
 base=$scripts/..
 
+# get directory from command line argument
+if [ $# -ne 1 ]; then
+    echo "Usage: ./train.sh <model_name>"
+    exit 1
+fi
+
+model_name=$1
+
 models=$base/models
 configs=$base/configs
 
@@ -15,8 +23,6 @@ num_threads=4
 SECONDS=0
 
 logs=$base/logs
-
-model_name=?
 
 mkdir -p $logs
 
