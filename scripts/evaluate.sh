@@ -3,6 +3,15 @@
 scripts=$(dirname "$0")
 base=$scripts/..
 
+# get directory from command line argument
+if [ $# -ne 3 ]; then
+    echo "Usage: ./evaluate.sh <model_name> <source_lang> <target_lang>"
+    exit 1
+fi
+
+model_name=$1
+source_lang=$2
+target_lang=$3
 data=$base/sampled_data
 configs=$base/configs
 
@@ -10,8 +19,8 @@ translations=$base/translations
 
 mkdir -p $translations
 
-src=?
-trg=?
+src=data/$model_name/test.$source_lang
+trg=data/$model_name/test.$target_lang
 
 
 num_threads=4
@@ -20,8 +29,6 @@ device=0
 # measure time
 
 SECONDS=0
-
-model_name=?
 
 echo "###############################################################################"
 echo "model_name $model_name"
