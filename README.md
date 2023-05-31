@@ -1,40 +1,33 @@
 # MT Exercise 5: Byte Pair Encoding, Beam Search
-This repository is a starting point for the 5th and final exercise. As before, fork this repo to your own account and the clone it into your prefered directory.
+
+## File structure and scripts
+
+We made changes to the following files:
+- scripts/train.sh
+- scripts/evaluate.sh
+
+We added the following files:
+- scripts/create_apply_bpe.sh
+- preprocess.ipynb
 
 ## Requirements
+We used spacy to tokenize the data. To install spacy, run
+```
+pip install spacy
+```
 
-- This only works on a Unix-like system, with bash available.
-- Python 3 must be installed on your system, i.e. the command `python3` must be available
-- Make sure virtualenv is installed on your system. To install, e.g.
+the code to download the required spacy model is already in the `preprocess.ipynb` notebook.
 
-    `pip install virtualenv`
+## Usage
+### `create_apply_bpe.sh`
+Note: This script requires that the data is already tokenized using preprocess.ipynb
 
-## Steps
+`./create_bpe.sh <directory> <num_codes>`
+This script creates a BPE model and applies it to the data. It takes the following arguments:
+- `directory`: The directory to which the data should be saved (path: data/<directory>)
+- `num_codes`: The number of BPE codes to use
 
-Clone your fork of this repository in the desired place:
+### `train.sh`
+We added some simple argument parsing to the `train.sh` script. It now takes the model name as an argument, and will automatically train a model using the .yaml file with the same name in the `configs` directory. the model will be saved to `models/<model_name>`
 
-    git clone https://github.com/[your-name]/mt-exercise-5
-
-Create a new virtualenv that uses Python 3.10. Please make sure to run this command outside of any virtual Python environment:
-
-    ./scripts/make_virtualenv.sh
-
-**Important**: Then activate the env by executing the `source` command that is output by the shell script above.
-
-Download and install required software as described in the exercise pdf.
-
-Download data:
-
-    ./download_iwslt_2017_data.sh
-    
-Before executing any further steps, you need to make the modifications described in the exercise pdf.
-
-Train a model:
-
-    ./scripts/train.sh
-
-The training process can be interrupted at any time, and the best checkpoint will always be saved.
-
-Evaluate a trained model with
-
-    ./scripts/evaluate.sh
+`./train.sh <model_name>`
