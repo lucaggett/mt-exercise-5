@@ -23,8 +23,9 @@ else
 fi
 
 # check if bpe directory exists
-if [ ! -d "data/bpe" ]; then
-    mkdir data/bpe
+if [ ! -d "data/$directory" ]; then
+    mkdir data/$directory
+    echo "Created directory data/$directory"
 fi
 
 # learn BPE from concatenated training data
