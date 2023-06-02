@@ -56,3 +56,16 @@ When we look at the output that we got, we can easily see why the BLEU score of 
 
 Overall, the BPE-model offers more informative translations and does have a better and more Italian output, but it still sometimes fails to translate grammar correctly, or to reflect the entire scope of the input sentence in its translation. 
 
+We have produced the following graphs to display what may change when using different beam sizes:
+
+![Barplot showing the relation between beam size and bleu score, showing improvement from beamsize 1 to beamsize 5, then same bleu score for all higher numbers except for a lower bleu score for beam size 8 and beam size 10.](/src/beam_to_bleu_barplot.png "Beam to BLEU barplot").
+![Lineplot showing the relation between beam size and bleu score, showing improvement from beamsize 1 to beamsize 5, then same bleu score for all higher numbers except for a lower bleu score for beam size 8 and beam size 10.](/src/beam_to_bleu_lineplot.png "Beam to BLEU lineplot").
+![Barplot showing the relation between beam size and seconds to predict. Beam size 2 up until 10 all show that it takes continously more time to predict in direct proportion to the beam size. Beam size one is an exception, as it takes almost as much time to predict as beam size 6. ](/src/beam_to_seconds_barplot.png "Beam to seconds barplot").
+![Lineplot showing the relation between beam size and seconds to predict. Beam size 2 up until 10 all show that it takes continously more time to predict in direct proportion to the beam size. Beam size one is an exception, as it takes almost as much time to predict as beam size 6.](/src/beam_to_seconds_lineplot.png "Beam to seconds lineplot").
+
+While a higher beamsize shows to almost always increase the amount of time that it takes to predict, the same can not be said for the relation between beam size and BLEU score. From beam size 1 until beam size 5, the BLEU score constantly improves, but it seems to reach its limit with beam size five, as it either gets worse or stays the same for higher beam sizes. Interestingly, the seconds it takes for the lowest beam size 1 are only caught up to again with beam size 6. Beam size 5 performs better, in terms of time it takes and in performance via BLEU score, than those before and after.
+
+We can thus see that a beam size of 5 would be ideal. In short, this is for the simple reason that any other beam sizes ending up with the same result - as in, the same BLEU score - take more time. 
+
+You can find all code relevant for creating those graphs in our file `graphicals.ipynb`.
+
