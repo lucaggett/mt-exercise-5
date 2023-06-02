@@ -31,3 +31,9 @@ This script creates a BPE model and applies it to the data. It takes the followi
 We added some simple argument parsing to the `train.sh` script. It now takes the model name as an argument, and will automatically train a model using the .yaml file with the same name in the `configs` directory. the model will be saved to `models/<model_name>`
 
 `./train.sh <model_name>`
+
+### `evaluate.sh`
+We added the same argument as for `train.sh` to the `evaluate.sh` script.
+
+`./evaluate.sh <model_name>`
+
