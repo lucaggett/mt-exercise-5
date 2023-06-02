@@ -10,18 +10,14 @@ if [ $# -ne 3 ]; then
 fi
 
 model_name=$1
-source_lang=$2
-target_lang=$3
+src=$2
+trg=$3
 data=$base/sampled_data
 configs=$base/configs
 
 translations=$base/translations
 
 mkdir -p $translations
-
-src=data/$model_name/test.$source_lang
-trg=data/$model_name/test.$target_lang
-
 
 num_threads=4
 device=0

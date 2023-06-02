@@ -1,11 +1,11 @@
-name: "transformer_sample_config"
+name: "transformer_word_level"
 joeynmt_version: "2.0.0"
 
 
 data:
-    train: "data/processed/train"
-    dev:   "data/processed/dev"
-    test:  "data/processed/test"
+    train: "data/word_level/train"
+    dev:   "data/word_level/dev"
+    test:  "data/word_level/test"
     dataset_type: "plain"
     src:
         lang: "de"
@@ -17,7 +17,7 @@ data:
         # or (= not both!) a file with a vocabulary built before starting the training:
         tokenizer_type: "spacy"
         tokenizer_cfg:
-            "de_core_news_sm"
+            model: ""
     trg: 
         lang: "it"
         level: "word"
@@ -28,7 +28,7 @@ data:
         # or (= not both!) a file with a vocabulary built before starting the training:
         tokenizer_type: "spacy"
         tokenizer_cfg:
-            "it_core_news_sm"
+            model: ""
 
 testing:
     beam_size: 5
@@ -52,7 +52,7 @@ training:
     validation_freq: 500
     logging_freq: 100
     eval_metric: "bleu"
-    model_dir: "?"
+    model_dir: "models/word_level"
     overwrite: True
     shuffle: True
     use_cuda: False
@@ -66,7 +66,7 @@ model:
     init_gain: 1.0
     embed_initializer: "xavier_uniform"
     embed_init_gain: 1.0
-    tied_embeddings: True
+    tied_embeddings: False
     tied_softmax: True
     encoder:
         type: "transformer"
